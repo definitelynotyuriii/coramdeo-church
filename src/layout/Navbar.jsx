@@ -2,27 +2,24 @@ import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
 const links = [
-  { name: 'HOME', path: '/' },
-  { name: 'ABOUT', path: '/about' },
-  { name: 'MINISTRIES', path: '/ministries/kids' },
-  { name: 'GIVE', path: '/give' },
-  { name: 'CONTACT', path: '/contact' },
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Ministries', path: '/ministries/kids' },
+  { name: 'Give', path: '/give' },
+  { name: 'Contact', path: '/contact' },
 ]
 
 function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-        <NavLink to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full border border-amber-400 flex items-center justify-center">
-            <span className="text-amber-400 font-serif text-sm">CD</span>
-          </div>
-          <div className="leading-tight">
-            <p className="text-white font-serif text-lg">CORAMDEO</p>
-            <p className="text-amber-400/80 text-[10px] tracking-widest">CHRISTIAN CHURCH</p>
-          </div>
+    <nav className="w-full max-w-6xl mx-auto px-6 pt-6">
+      <div className="bg-white rounded-full shadow-sm px-6 h-16 flex items-center justify-between gap-8">
+        <NavLink to="/" className="flex items-baseline gap-2 shrink-0">
+          <span className="font-serif text-xl text-gray-900 whitespace-nowrap">CORAMDEO</span>
+          <span className="hidden lg:inline text-[10px] tracking-widest text-gray-400 font-medium whitespace-nowrap">
+            .
+          </span>
         </NavLink>
 
         <div className="hidden md:flex items-center gap-8">
@@ -32,28 +29,27 @@ function Navbar() {
               to={link.path}
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors ${
-                  isActive ? 'text-amber-400' : 'text-white/80 hover:text-amber-400'
+                  isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
                 }`
               }
             >
               {link.name}
             </NavLink>
           ))}
+          <NavLink
+            to="/contact"
+            className="bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors"
+          >
+            Join us
+          </NavLink>
         </div>
 
-        <NavLink
-          to="/contact"
-          className="hidden md:inline-block bg-amber-400 text-gray-900 text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-amber-300 transition-colors"
-        >
-          Plan Your Visit
-        </NavLink>
-
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-gray-700"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {open ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -64,13 +60,13 @@ function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden flex flex-col px-6 pb-6 gap-4 bg-gray-900/95">
+        <div className="md:hidden bg-white rounded-2xl shadow-sm mt-2 px-6 py-4 flex flex-col gap-3">
           {links.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               onClick={() => setOpen(false)}
-              className="text-white/90 text-base font-medium pt-2"
+              className="text-gray-600 text-sm font-medium"
             >
               {link.name}
             </NavLink>
@@ -78,9 +74,9 @@ function Navbar() {
           <NavLink
             to="/contact"
             onClick={() => setOpen(false)}
-            className="bg-amber-400 text-gray-900 text-sm font-semibold px-6 py-2.5 rounded-full text-center mt-2"
+            className="bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center mt-1"
           >
-            Plan Your Visit
+            Join us
           </NavLink>
         </div>
       )}
