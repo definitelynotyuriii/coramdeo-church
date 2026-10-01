@@ -15,51 +15,56 @@ const values = [
 
 function About() {
   return (
-    <>
-      <section className="max-w-5xl mx-auto px-6 py-24 text-center">
-        <span className="text-amber-600 text-xs font-semibold tracking-widest">
-          WHO WE ARE
-        </span>
-        <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mt-3 mb-6">
-          Our <span className="italic text-amber-600">Story</span>
-        </h2>
-        <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
-          Coram Deo Christian Church was founded on a simple conviction — that
-          every part of life is lived before the face of God. We are a community
-          of believers pursuing Christ together, welcoming anyone who wants to
-          know Him more.
-        </p>
-      </section>
+    <section className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 font-['Inter',sans-serif] text-[#26364a]">
+      <div className="max-w-6xl mx-auto px-6 pt-8 pb-16">
+        {/* Story card */}
+        <div className="rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-12 md:p-16">
+          <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
+            WHO WE ARE
+          </span>
+          <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-6xl md:text-7xl leading-[1.05] font-medium">
+            Our <span className="italic">Story</span>
+          </h1>
+          <p className="mt-6 max-w-[38rem] text-lg leading-8 text-slate-500">
+            Coram Deo Christian Church was founded on a simple conviction — that
+            every part of life is lived before the face of God. We are a community
+            of believers pursuing Christ together, welcoming anyone who wants to
+            know Him more.
+          </p>
+        </div>
 
-      <section className="bg-gray-50 py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-amber-600 text-xs font-semibold tracking-widest">
+        {/* Core values */}
+        <div className="mt-5">
+          <div className="px-2 pt-10 pb-6">
+            <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
               WHAT WE BELIEVE
             </span>
-            <h2 className="font-serif text-4xl text-gray-900 mt-3">
+            <h2 className="mt-3 font-['Cormorant_Garamond',serif] text-4xl md:text-5xl font-medium">
               Our Core Values
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid gap-5 md:grid-cols-3">
             {values.map((v) => (
-              <div key={v.title} className="text-center">
-                <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-amber-400/10 border border-amber-400 flex items-center justify-center">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+              <div
+                key={v.title}
+                className="rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-10"
+              >
+                <div className="w-12 h-12 rounded-full bg-[#26364a]/5 border border-[#26364a] flex items-center justify-center">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#26364a]" />
                 </div>
-                <h3 className="font-serif text-xl text-gray-900 mb-3">
+                <h3 className="mt-6 font-['Cormorant_Garamond',serif] text-2xl font-medium">
                   {v.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="mt-3 text-sm leading-7 text-slate-500">
                   {v.desc}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
 
