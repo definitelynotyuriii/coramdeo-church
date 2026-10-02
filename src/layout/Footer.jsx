@@ -5,10 +5,10 @@ function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Left */}
           <div>
-            <h2 className="font-['Cormorant_Garamond',serif] text-3xl leading-none">
-              Coramdeo
+            <h2 className="font-['Cormorant_Garamond',serif] text-2xl leading-none">
+              Coramdeo Christian Church
             </h2>
-            <p className="mt-3 text-[11px] tracking-[0.2em] text-slate-500 uppercase">
+            <p className="mt-3 text-[10px] tracking-[0.2em] text-slate-500 uppercase">
               In the presence of GOD
             </p>
             <p className="mt-6 max-w-sm text-sm leading-6 text-slate-500">
@@ -23,7 +23,7 @@ function Footer() {
               Reach us
             </p>
             <div className="mt-3 space-y-1 text-sm">
-              <p>hello@coramdeo.church</p>
+              <p>coramdeochurch1@gmail.com</p>
               <p>(555) 014-2280</p>
               <p>Bugnay, Tuao, Cagayan Valley</p>
             </div>

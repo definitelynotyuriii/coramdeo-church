@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './layout/Layout'
+import JoinUs from './pages/JoinUs'
 import Home from './pages/Home'
 import About from './pages/About'
 import Ministries from './pages/Ministries'
@@ -8,6 +9,7 @@ import MusicMinistry from './pages/MusicMinistry'
 import YouthMinistry from './pages/YouthMinistry'
 import Give from './pages/Give'
 import Contact from './pages/Contact'
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/ministries/youth" element={<YouthMinistry />} />
         <Route path="/give" element={<Give />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/join" element={<JoinUs />} />
       </Route>
     </Routes>
   )

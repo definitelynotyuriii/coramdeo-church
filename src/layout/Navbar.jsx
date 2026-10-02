@@ -86,7 +86,7 @@ function Navbar() {
             )
           )}
           <NavLink
-            to="/contact"
+            to="/join"
             className="bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors"
           >
             Join us
@@ -144,7 +144,7 @@ function Navbar() {
             )
           )}
           <NavLink
-            to="/contact"
+            to="/join"
             onClick={() => setOpen(false)}
             className="bg-gray-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center mt-1"
           >
