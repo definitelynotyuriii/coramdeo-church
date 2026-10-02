@@ -1,11 +1,13 @@
-import Hero from '../home/Hero'
+import Hero, { getVerseOfTheDay } from '../home/Hero'
 
 function Home() {
+  const verse = getVerseOfTheDay()
+
   return (
     <>
       <Hero />
 
-      <section className="max-w-6xl mx-auto px-6 pb-6">
+      <section id="verse-of-the-day" className="max-w-6xl mx-auto px-6 pb-6 scroll-mt-6">
         <div className="bg-white rounded-3xl shadow-sm p-10">
           <div className="flex justify-between items-start mb-6">
             <div />
@@ -15,13 +17,12 @@ function Home() {
           </div>
 
           <p className="font-serif text-2xl md:text-3xl text-gray-900 leading-snug mb-6 max-w-xl">
-            "This is the day that the Lord has made; let us rejoice and be
-            glad in it."
+            "{verse.text}"
           </p>
 
           <div className="flex items-center gap-3 mb-6">
             <span className="w-8 h-px bg-amber-400" />
-            <span className="text-gray-600 text-sm">Psalm 118:24</span>
+            <span className="text-gray-600 text-sm">{verse.ref}</span>
           </div>
 
           <p className="text-gray-500 text-sm max-w-lg">

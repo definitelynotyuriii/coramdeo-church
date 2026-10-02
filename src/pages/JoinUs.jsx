@@ -24,13 +24,13 @@ function JoinUs() {
     <section className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 font-['Inter',sans-serif] text-[#26364a]">
       <div className="max-w-6xl mx-auto px-6 pt-8 pb-16">
         <div className="rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-12 md:p-16 text-center">
-          <span className="text-[10px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
+          <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
             BECOME PART OF US
           </span>
           <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-4xl md:text-5xl leading-[1.05] font-medium">
             Join <span>Us</span>
           </h1>
-          <p className="mt-6 max-w-[38rem] mx-auto text-lg leading-8 text-slate-500">
+          <p className="mt-6 max-w-[38rem] mx-auto text-md leading-8 text-slate-500">
             Tell us a bit about yourself and we'll reach out to welcome you.
           </p>
         </div>

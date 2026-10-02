@@ -13,27 +13,27 @@ function Contact() {
     <section className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-50 font-['Inter',sans-serif] text-[#26364a]">
       <div className="max-w-6xl mx-auto px-6 pt-8 pb-16">
         <div className="rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-12 md:p-16 text-center">
-          <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
+          <span className="text-[11px] font-semibold tracking-[0.4em] text-slate-500 uppercase">
             GET IN TOUCH
           </span>
-          <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-4xl md:text-4xl leading-[1.05] font-medium">
+          <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-4xl md:text-5xl leading-[1.05] font-medium">
             Contact <span>Us</span>
           </h1>
-          <p className="mt-6 max-w-[38rem] mx-auto text-base leading-4 text-slate-500">
+          <p className="mt-6 max-w-[40rem] mx-auto text-sm leading-4 text-slate-500">
             We'd love to hear from you. Reach out, call us, or visit us
             on a Sunday.
           </p>
         </div>
 
-        <div className="mt-5 rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-10 max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="mt-5 rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-8 md:p-10 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-[1.2fr_1fr_1.5fr_1fr] gap-8 text-center">
             <div>
               <div className="text-[11px] tracking-[0.15em] text-slate-500 uppercase">
                 Address
               </div>
-              <div className="mt-2 font-['Cormorant_Garamond',serif] text-xl">
-                {CONTACT_INFO.address}
-              </div>
+            <div className="mt-2 font-['Cormorant_Garamond',serif] text-xl md:whitespace-nowrap">
+              {CONTACT_INFO.address}
+            </div>
             </div>
 
             <div>

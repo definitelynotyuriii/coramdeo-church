@@ -22,10 +22,10 @@ function Footer() {
             <p className="text-[11px] tracking-[0.2em] text-slate-500 uppercase">
               Reach us
             </p>
-            <div className="mt-3 space-y-1 text-sm">
+            <div className="mt-3 space-y-2 text-sm">
               <p>coramdeochurch1@gmail.com</p>
-              <p>(555) 014-2280</p>
               <p>Bugnay, Tuao, Cagayan Valley</p>
+              <p>2441</p>
             </div>
           </div>
         </div>
