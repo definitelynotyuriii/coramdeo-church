@@ -317,6 +317,15 @@ const VISIT_INFO = {
 }
 // =====================================
 
+// ===== HERO SLIDESHOW IMAGES (put files in public/images/) =====
+// Add or remove lines to change how many pictures you have.
+const HERO_IMAGES = [
+  '/images/Coramdeo.jpg',
+  '/images/church2.jpg',
+  '/images/church3.jpg',
+]
+// ================================================================
+
 export function getVerseOfTheDay() {
   const now = new Date()
   const startOfYear = new Date(now.getFullYear(), 0, 0)
@@ -333,6 +342,8 @@ function Hero() {
   const [passage, setPassage] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [slide, setSlide] = useState(0)
+  const [showImage, setShowImage] = useState(false)
   const verse = getVerseOfTheDay()
   const todayLabel = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
@@ -342,6 +353,15 @@ function Hero() {
   })
 
   const totalChapters = BOOKS.find(([name]) => name === book)?.[1] ?? 1
+
+  // Auto change image every 2 seconds (pauses while big image is open)
+  useEffect(() => {
+    if (showImage) return
+    const id = setInterval(() => {
+      setSlide((s) => (s + 1) % HERO_IMAGES.length)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [showImage])
 
   useEffect(() => {
     if (!showBible) return
@@ -444,26 +464,104 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right image + floating card */}
+          {/* Right image slideshow + floating card */}
           <div className="relative min-h-[420px]">
-            <div
-              className="absolute inset-0 rounded-[32px] bg-cover bg-center shadow-sm"
-              style={{ backgroundImage: "url('/images/Coramdeo.jpg')" }}
-            />
+            {/* Clickable slideshow */}
+            <button
+              type="button"
+              onClick={() => setShowImage(true)}
+              aria-label="View image larger"
+              className="absolute inset-0 rounded-[32px] overflow-hidden shadow-sm cursor-zoom-in"
+            >
+              {HERO_IMAGES.map((src, i) => (
+                <div
+                  key={src}
+                  className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
+                    i === slide ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ backgroundImage: `url('${src}')` }}
+                />
+              ))}
+            </button>
+
+            {/* Dots */}
+            <div className="absolute bottom-4 right-4 z-10 flex gap-2">
+              {HERO_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setSlide(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-all cursor-pointer ${
+                    i === slide ? 'w-6 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Floating card */}
             <div className="absolute -left-6 -bottom-6 w-64 rounded-3xl border border-white/60 bg-white/60 backdrop-blur-md p-4 shadow-lg">
               <div className="text-[11px] tracking-[0.15em] text-[#c49a4a] uppercase">
-                Church Photo
+                Church Images
               </div>
               <div className="mt-1 font-['Cormorant_Garamond',serif] text-lg">
-                Sunday worship, 9:30 AM
+                Coramdeo Christian Church
               </div>
               <div className="mt-1 text-sm text-slate-500">
-                Devotion
+                In the presence of God
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Image viewer modal */}
+      {showImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-6"
+          onClick={() => setShowImage(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setShowImage(false)}
+            aria-label="Close"
+            className="absolute top-5 right-6 text-4xl text-white/80 hover:text-white cursor-pointer"
+          >
+            ×
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setSlide((slide - 1 + HERO_IMAGES.length) % HERO_IMAGES.length)
+            }}
+            aria-label="Previous image"
+            className="absolute left-4 md:left-8 text-4xl text-white/80 hover:text-white cursor-pointer"
+          >
+            ‹
+          </button>
+
+          <img
+            src={HERO_IMAGES[slide]}
+            alt="Coramdeo Christian Church"
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[85vh] max-w-full rounded-3xl shadow-xl object-contain"
+          />
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setSlide((slide + 1) % HERO_IMAGES.length)
+            }}
+            aria-label="Next image"
+            className="absolute right-4 md:right-8 text-4xl text-white/80 hover:text-white cursor-pointer"
+          >
+            ›
+          </button>
+        </div>
+      )}
 
       {/* Verse of the day modal */}
       {showVerse && (

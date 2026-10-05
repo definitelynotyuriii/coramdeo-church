@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const ministries = [
   { name: 'Kids Ministry', path: '/ministries/kids', image: '/images/kids-ministry.jpg' },
-  { name: 'Music Ministry', path: '/ministries/music', image: '/images/music-ministry.jpg' },
+  { name: 'Music Ministry', path: '/ministries/music', image: '/images/MUSICMINISTRY.jpg' },
   { name: 'Youth Ministry', path: '/ministries/youth', image: '/images/youth-ministry.jpg' },
 ]
 

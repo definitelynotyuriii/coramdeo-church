@@ -19,18 +19,38 @@ function About() {
       <div className="max-w-6xl mx-auto px-6 pt-8 pb-16">
         {/* Story card */}
         <div className="rounded-[32px] border border-slate-200/80 bg-white/80 backdrop-blur p-12 md:p-16">
-          <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
-            WHO WE ARE
-          </span>
-          <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-6xl md:text-7xl leading-[1.05] font-medium">
-            Our <span className="italic">Story</span>
-          </h1>
-          <p className="mt-6 max-w-[38rem] text-lg leading-8 text-slate-500">
-            Coram Deo Christian Church was founded on a simple conviction — that
-            every part of life is lived before the face of God. We are a community
-            of believers pursuing Christ together, welcoming anyone who wants to
-            know Him more.
-          </p>
+          <div className="grid items-center gap-12 md:grid-cols-2">
+            {/* Text */}
+            <div>
+              <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-500 uppercase">
+                WHO WE ARE
+              </span>
+              <h1 className="mt-6 font-['Cormorant_Garamond',serif] text-6xl md:text-6xl leading-[1.05] font-medium">
+                Our <span>Story</span>
+              </h1>
+              <p className="mt-6 max-w-[38rem] text-md leading-8 text-slate-500">
+                Coramdeo Christian Church Tuao was founded on September 27, 2011, under the leadership of Ptr. Dominga Perez.
+                From the beginning, the church has been built on a simple conviction that every part of life is lived before the face of God.
+                We are a community of believers pursuing Christ together, welcoming anyone who desires to know Him more and grow in faith.
+              </p>
+            </div>
+
+            {/* Pastor image */}
+            <div className="relative mx-auto w-full max-w-xs md:ml-auto md:mr-0">
+              <div className="aspect-[4/5] overflow-hidden rounded-[28px] border border-slate-200/80 bg-slate-100 shadow-sm">
+                <img
+                  src="/images/PTRADOMINGAA.png"
+                  alt="Ptr. Dominga Perez, founding pastor of Coramdeo Christian Church Tuao"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <p className="mt-4 text-center text-sm text-slate-500">
+                <span className="font-medium text-[#26364a]">Ptr. Dominga Perez</span>
+                <span className="mx-2">·</span>
+                Founding Pastor
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Core values */}
