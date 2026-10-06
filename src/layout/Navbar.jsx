@@ -17,6 +17,8 @@ const links = [
   { name: 'Contact', path: '/contact' },
 ]
 
+const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
 function Navbar() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
@@ -24,7 +26,7 @@ function Navbar() {
   return (
     <nav className="w-full max-w-6xl mx-auto px-6 pt-6">
       <div className="bg-white rounded-full shadow-sm px-6 h-16 flex items-center justify-between gap-8">
-        <NavLink to="/" className="flex items-center gap-3 shrink-0">
+        <NavLink to="/" onClick={scrollTop} className="flex items-center gap-3 shrink-0">
           <img
             src="/images/coramdeologo.png"
             alt="Coram Deo logo"
@@ -75,6 +77,7 @@ function Navbar() {
               <NavLink
                 key={link.path}
                 to={link.path}
+                onClick={link.path === '/' ? scrollTop : undefined}
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors ${
                     isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
@@ -136,7 +139,10 @@ function Navbar() {
               <NavLink
                 key={link.path}
                 to={link.path}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false)
+                  if (link.path === '/') scrollTop()
+                }}
                 className="text-gray-600 text-sm font-medium"
               >
                 {link.name}

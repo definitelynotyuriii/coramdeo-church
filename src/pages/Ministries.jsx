@@ -8,7 +8,16 @@ const ministries = [
 
 function Ministries() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16">
+    <section
+      style={{ animation: 'ministriesFade 0.6s ease-out' }}
+      className="max-w-6xl mx-auto px-6 py-16"
+    >
+      <style>{`
+        @keyframes ministriesFade {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Our Ministries</h1>
       <div className="grid gap-6 md:grid-cols-3">
         {ministries.map((m) => (

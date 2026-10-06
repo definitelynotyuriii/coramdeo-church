@@ -1,7 +1,28 @@
 function MusicMinistry() {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-gray-900 mb-4">Music Ministry</h1>
+    <section
+      style={{
+        animation: 'musicReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1)'
+      }}
+      className="max-w-6xl mx-auto px-4 py-16"
+    >
+      <style>{`
+        @keyframes musicReveal {
+          from {
+            opacity: 0;
+            transform: scale(0.96) translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+      `}</style>
+
+      <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        Music Ministry
+      </h1>
+
       <img
         src="/images/MUSICMINISTRY1.jpg"
         alt="Music Ministry"
