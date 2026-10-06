@@ -321,8 +321,11 @@ const VISIT_INFO = {
 // Add or remove lines to change how many pictures you have.
 const HERO_IMAGES = [
   '/images/Coramdeo.jpg',
-  '/images/church2.jpg',
-  '/images/church3.jpg',
+  '/images/CHURCH.jpg',
+  '/images/CHURCH1.jpg',
+  '/images/CHURCH2.jpg',
+  '/images/CHURCH3.jpg',
+  '/images/CHURCH4.jpg',
 ]
 // ================================================================
 
