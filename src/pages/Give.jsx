@@ -44,37 +44,73 @@ const isPlaceholder = (v) =>
 const isReady = (...values) =>
   SHOW_PLACEHOLDERS || values.every((v) => !isPlaceholder(v))
 
-/* Animations: one page-load reveal + small feedback motions.
-   Everything is switched off for people who prefer reduced motion. */
+/* Page transition: a navy curtain with a gold edge sweeps up to reveal the page,
+   then the heading unmasks, a gold line draws, and the cards float in one by one.
+   For people who prefer reduced motion, the curtain is removed and everything
+   becomes a soft fade. */
 const STYLES = `
+@keyframes give-curtain {
+  0%   { transform: translateY(0); }
+  99%  { visibility: visible; }
+  100% { transform: translateY(-101%); visibility: hidden; }
+}
+@keyframes give-mask {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@keyframes give-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
 @keyframes give-rise {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(36px) scale(0.95); filter: blur(10px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes give-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 @keyframes give-pop {
   0%   { transform: scale(0.85); }
   60%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
+.give-curtain {
+  animation: give-curtain 1.15s cubic-bezier(0.76, 0, 0.24, 1) 0.2s both;
+}
+.give-mask {
+  transform: translateY(110%);
+  animation: give-mask 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.give-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: give-line 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 .give-rise {
   opacity: 0;
-  animation: give-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: give-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .give-pop { animation: give-pop 0.35s ease-out; }
 @media (prefers-reduced-motion: reduce) {
-  .give-rise { opacity: 1; animation: none; }
+  .give-curtain { display: none; }
+  .give-mask { transform: none; opacity: 0; animation: give-fade 0.6s ease-out forwards; }
+  .give-line { transform: none; opacity: 0; animation: give-fade 0.6s ease-out forwards; }
+  .give-rise { opacity: 0; transform: none; filter: none; animation: give-fade 0.6s ease-out forwards; }
   .give-pop  { animation: none; }
   .give-card, .give-card * { transition: none !important; }
 }
 `
 
+/* Content starts revealing while the curtain is lifting */
+const BASE = 650
 /* Staggered delay helper: header first, then each card in order */
-const delay = (i) => ({ animationDelay: `${i * 90}ms` })
+const delay = (i) => ({ animationDelay: `${BASE + i * 110}ms` })
 
 function Card({ icon, title, children, className = "", index = 0 }) {
   return (
     <div
-      style={delay(index)}
+      style={delay(index + 2)}
       className={`group give-rise give-card bg-white rounded-[32px] shadow-sm border border-slate-200/80 p-8
         transition-all duration-300 ease-out
         hover:-translate-y-1 hover:shadow-lg hover:border-[#c49a4a]/40 ${className}`}
@@ -158,18 +194,43 @@ function Give() {
     <section className="max-w-6xl mx-auto px-6 py-16">
       <style>{STYLES}</style>
 
-      <div className="give-rise" style={delay(0)}>
-        <span className="text-[11px] font-semibold tracking-[0.2em] text-[#9a7228] uppercase">
+      {/* Page transition curtain */}
+      <div
+        aria-hidden="true"
+        className="give-curtain pointer-events-none fixed inset-0 z-50 bg-[#26364a]"
+      >
+        <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#c49a4a]" />
+      </div>
+
+      <div>
+        <span
+          className="give-rise inline-block text-[11px] font-semibold tracking-[0.2em] text-[#9a7228] uppercase"
+          style={delay(0)}
+        >
           Give
         </span>
         <h1 className="mt-3 font-['Cormorant_Garamond',serif] text-5xl md:text-6xl font-medium text-[#26364a]">
-          Ways to Give
+          <span className="block overflow-hidden pb-2 leading-[1.1]">
+            <span className="give-mask block" style={delay(0.5)}>
+              Ways to Give
+            </span>
+          </span>
         </h1>
-        <p className="mt-4 max-w-xl text-slate-500 leading-7">
-          Thank you for supporting the work of Coram Deo. Choose the way that is most
+        <div
+          className="give-line mt-3 h-[2px] w-24 bg-[#c49a4a]"
+          style={delay(1.5)}
+        />
+        <p
+          className="give-rise mt-5 max-w-xl text-slate-500 leading-7"
+          style={delay(1)}
+        >
+          Thank you for supporting the work of Coramdeo Church. Choose the way that is most
           convenient for you.
         </p>
-        <p className="mt-3 max-w-xl text-sm italic text-slate-500 leading-7">
+        <p
+          className="give-rise mt-3 max-w-xl text-sm italic text-slate-500 leading-7"
+          style={delay(1.5)}
+        >
           “Each of you should give what you have decided in your heart to give, not
           reluctantly or under compulsion, for God loves a cheerful giver.” — 2 Corinthians 9:7
         </p>
@@ -262,7 +323,7 @@ function Give() {
 
       <div
         className="give-rise mt-10 rounded-3xl bg-[#26364a]/[0.04] border border-slate-200/80 p-6 text-sm leading-7 text-slate-600"
-        style={delay(i + 1)}
+        style={delay(i + 3)}
       >
         <p>{note}</p>
         {(contact.email || contact.phone) && (
